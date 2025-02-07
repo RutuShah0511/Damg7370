@@ -1,0 +1,9 @@
+{
+	"name": "RSdamg7370adfspring2025",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "006bf36f-2eed-43be-9147-0bb74ce6cb6a",
+		"tenantId": "a8eec281-aaa3-4dae-ac9b-9a398b9215e7"
+	}
+}
