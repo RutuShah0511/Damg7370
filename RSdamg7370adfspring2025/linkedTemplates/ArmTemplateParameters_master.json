@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "RSdamg7370adfspring2025"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"Snowflake1_password": {
+			"value": ""
+		},
+		"Snowflake2_password": {
+			"value": ""
+		},
+		"AzureBlobStorage1_sasUri": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://demo7370.dfs.core.windows.net/"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"value": "NYPD_DB"
+		},
+		"Snowflake1_properties_typeProperties_role": {
+			"value": "NYPD_ANALYST "
+		},
+		"Snowflake2_properties_typeProperties_database": {
+			"value": "NYPD_ARREST"
+		},
+		"Snowflake2_properties_typeProperties_role": {
+			"value": "TEMP_ROLE"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
