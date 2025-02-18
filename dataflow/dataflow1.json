@@ -10,12 +10,17 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
-				},
-				{
-					"name": "source2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SnowflakeTable3",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
@@ -40,8 +45,6 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source2",
 				"source1 derive(LIC_Issue_Date = toDate(License_Issue_Date, 'MMMM dd yyyy'),",
 				"          Secondary_Breed = iifNull(Secondary_Breed, 'Unknown'),",
 				"          ZIP_Code = lpad(toString(ZIP_Code),5,'0'),",
@@ -49,7 +52,7 @@
 				"          License_Number = toInteger(translate(License_Number, 'S', '')),",
 				"          {Animal_Name } = translate(Animals_Name, '0', ' '),",
 				"          Load_Dt = currentDate(),",
-				"          Job_ID = $Job_ID ) ~> derivedColumn1",
+				"          Job_ID = $Job_ID) ~> derivedColumn1",
 				"derivedColumn1 select(mapColumn(",
 				"          License_Issue_Date,",
 				"          License_Number,",
@@ -64,7 +67,29 @@
 				"          Load_Dt",
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
-				"     skipDuplicateMapOutputs: false) ~> select1"
+				"     skipDuplicateMapOutputs: false) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          LICENSE_ISSUE_DATE as string,",
+				"          LICENSE_NUMBER as string,",
+				"          ANIMAL_NAME as string,",
+				"          SPECIES as string,",
+				"          PRIMARY_BREED as string,",
+				"          SECONDARY_BREED as string,",
+				"          ZIP_CODE as string,",
+				"          DI_JOB_ID as string,",
+				"          DI_LOAD_DT as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     truncate:true,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     stageInsert: true) ~> sink1"
 			]
 		}
 	}
