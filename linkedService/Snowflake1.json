@@ -7,11 +7,11 @@
 		"typeProperties": {
 			"authenticationType": "Basic",
 			"accountIdentifier": "bo23970.canada-central.azure",
-			"user": "NYPD_ANALYST",
-			"database": "NYPD_DB",
-			"warehouse": "NYPD_WH",
-			"role": "NYPD_ANALYST ",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEJDMTlDOTVBLUNGQUQtNDg4RS1CNDMzLTZFRDJGM0QxQzU0OV9mNzhjZDhkMC1hYmRhLTQ3NWUtYWFlNC0yNjUzNTIwNWRmMjgiDQp9"
+			"user": "SEATTLE_PET_LICENSE_USER",
+			"database": "SEATTLE_PET_LICENSE_DB",
+			"warehouse": "SEATTLE_PET_LICENSE_WH",
+			"role": "SEATTLE_PET_LICENSE_ROLE",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEJDMTlDOTVBLUNGQUQtNDg4RS1CNDMzLTZFRDJGM0QxQzU0OV9kM2EwOGYxYy04MDhmLTQzNGMtYjlkYy0xNDZhN2MzMTJlMGYiDQp9"
 		}
 	}
 }
