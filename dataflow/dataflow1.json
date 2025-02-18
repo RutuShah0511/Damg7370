@@ -1,0 +1,68 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          License_Issue_Date as string,",
+				"          License_Number as string,",
+				"          Animals_Name as string,",
+				"          Species as string,",
+				"          Primary_Breed as string,",
+				"          Secondary_Breed as string,",
+				"          ZIP_Code as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(LIC_Issue_Date = toDate(License_Issue_Date, 'MMMM dd yyyy') \r",
+				",",
+				"          Secondary_Breed = iifNull(Secondary_Breed, 'Unknown') \r",
+				",",
+				"          ZIP_Code = lpad(toString(ZIP_Code),5,'0')\r",
+				",",
+				"          Species = upper(Species) \r",
+				",",
+				"          License_Number = toInteger(translate(License_Number, 'S', '')) \r",
+				",",
+				"          {Animal_Name } = translate(Animals_Name, '0', ' ') \r",
+				",",
+				"          Load_Dt = currentDate()) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          License_Issue_Date,",
+				"          License_Number,",
+				"          Animals_Name,",
+				"          Species,",
+				"          Primary_Breed,",
+				"          Secondary_Breed,",
+				"          ZIP_Code,",
+				"          LIC_Issue_Date,",
+				"          {Animal_Name },",
+				"          Job_ID,",
+				"          Load_Dt",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
+			]
+		}
+	}
+}
