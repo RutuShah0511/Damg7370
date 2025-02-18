@@ -10,6 +10,9 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
+				},
+				{
+					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -45,6 +48,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source2",
 				"source1 derive(LIC_Issue_Date = toDate(License_Issue_Date, 'MMMM dd yyyy'),",
 				"          Secondary_Breed = iifNull(Secondary_Breed, 'Unknown'),",
 				"          ZIP_Code = lpad(toString(ZIP_Code),5,'0'),",
