@@ -27,7 +27,7 @@
 				"          DI_LOAD_DT as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
+				"     validateSchema: true,",
 				"     format: 'table') ~> source1"
 			]
 		}
