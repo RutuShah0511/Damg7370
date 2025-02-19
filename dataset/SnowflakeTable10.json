@@ -1,5 +1,5 @@
 {
-	"name": "SnowflakeTable5",
+	"name": "SnowflakeTable10",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Snowflake3",
@@ -9,22 +9,28 @@
 		"type": "SnowflakeV2Table",
 		"schema": [
 			{
-				"name": "BREED_SK",
+				"name": "PET_LIC_SK",
 				"type": "NUMBER",
 				"precision": 10,
 				"scale": 0
 			},
 			{
-				"name": "PRIMARY_BREED_NAME",
-				"type": "VARCHAR"
+				"name": "DATE_SK",
+				"type": "NUMBER",
+				"precision": 10,
+				"scale": 0
 			},
 			{
-				"name": "SECONDARY_BREED_NAME",
-				"type": "VARCHAR"
+				"name": "LOCATION_SK",
+				"type": "NUMBER",
+				"precision": 10,
+				"scale": 0
 			},
 			{
-				"name": "SPECIES_NAME",
-				"type": "VARCHAR"
+				"name": "BREED_SK",
+				"type": "NUMBER",
+				"precision": 10,
+				"scale": 0
 			},
 			{
 				"name": "DI_JOB_ID",
@@ -34,6 +40,10 @@
 				"name": "DI_LOAD_DT",
 				"type": "DATE"
 			}
-		]
+		],
+		"typeProperties": {
+			"schema": "SEATTLE_PET_LICENSE_SCHEMA",
+			"table": "PET_LIC_FCT"
+		}
 	}
 }

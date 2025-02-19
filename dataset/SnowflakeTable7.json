@@ -1,5 +1,5 @@
 {
-	"name": "SnowflakeTable5",
+	"name": "SnowflakeTable7",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Snowflake3",
@@ -34,6 +34,10 @@
 				"name": "DI_LOAD_DT",
 				"type": "DATE"
 			}
-		]
+		],
+		"typeProperties": {
+			"schema": "SEATTLE_PET_LICENSE_SCHEMA",
+			"table": "BREED_DIM"
+		}
 	}
 }
