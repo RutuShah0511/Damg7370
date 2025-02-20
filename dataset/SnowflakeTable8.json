@@ -37,7 +37,7 @@
 		],
 		"typeProperties": {
 			"schema": "SEATTLE_PET_LICENSE_SCHEMA",
-			"table": "LOCATION_DIM"
+			"table": "BREED_DIM"
 		}
 	}
 }

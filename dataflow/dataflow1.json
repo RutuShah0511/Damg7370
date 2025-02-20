@@ -34,7 +34,7 @@
 				"     Job_ID as string (\"10\")",
 				"}",
 				"source(output(",
-				"          License_Issue_Date as date,",
+				"          License_Issue_Date as string,",
 				"          License_Number as string,",
 				"          Animals_Name as string,",
 				"          Species as string,",
@@ -87,7 +87,18 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     stageInsert: true) ~> sink1"
+				"     stageInsert: true,",
+				"     mapColumn(",
+				"          LICENSE_ISSUE_DATE = LIC_Issue_Date,",
+				"          LICENSE_NUMBER = License_Number,",
+				"          ANIMAL_NAME = Animals_Name,",
+				"          SPECIES = Species,",
+				"          PRIMARY_BREED = Primary_Breed,",
+				"          SECONDARY_BREED = Secondary_Breed,",
+				"          ZIP_CODE = ZIP_Code,",
+				"          DI_JOB_ID = Job_ID,",
+				"          DI_LOAD_DT = Load_Dt",
+				"     )) ~> sink1"
 			]
 		}
 	}
