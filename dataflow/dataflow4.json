@@ -42,6 +42,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "SnowflakeTable12",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -140,14 +144,15 @@
 				"          DI_JOB_ID = source1@DI_JOB_ID,",
 				"          DI_LOAD_DT = source1@DI_LOAD_DT,",
 				"          MAX_LIC,",
-				"          DATE_SK",
+				"          DATE_SK,",
+				"          BREED_SK",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 keyGenerate(output(undefined as long),",
+				"select1 keyGenerate(output(ROW_NUM as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey1",
-				"surrogateKey1 derive() ~> derivedColumn1",
+				"surrogateKey1 derive(PET_LIC_SK = PET_LIC_SK + ROW_NUM) ~> derivedColumn1",
 				"joinBreedDim, sourceDateDim join(LICENSE_ISSUE_DATE == DT,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
@@ -167,6 +172,19 @@
 				"     broadcast: 'auto')~> joinLocationDim",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          PET_LIC_SK as string,",
+				"          DATE_SK as string,",
+				"          LOCATION_SK as string,",
+				"          BREED_SK as string,",
+				"          DI_JOB_ID as string,",
+				"          DI_LOAD_DT as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
