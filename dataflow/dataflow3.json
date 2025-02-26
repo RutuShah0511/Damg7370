@@ -114,7 +114,7 @@
 				"filterExistingRows keyGenerate(output(RowNum as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey",
-				"surrogateKey derive(DI_LOAD_DT = currentDate(),",
+				"surrogateKey derive(DI_LOAD_DT = currentTimestamp(),",
 				"          BREED_SK = MAXBREEDSK + RowNum,",
 				"          DI_JOB_ID = uuid()) ~> derivedColumn1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
