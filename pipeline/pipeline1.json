@@ -5,6 +5,8 @@
 			{
 				"name": "TSV_2_Parquet",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -59,10 +61,8 @@
 				]
 			},
 			{
-				"name": "Copy data2",
+				"name": "Copy data1",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "TSV_2_Parquet",
@@ -80,17 +80,116 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "ParquetReadSettings"
+						}
+					},
 					"sink": {
 						"type": "SnowflakeV2Sink",
 						"importSettings": {
 							"type": "SnowflakeImportCopyCommand"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "bronze"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "License_Issue_Date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LICENSE_ISSUE_DATE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "License_Number",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LICENSE_NUMBER",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Animals_Name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ANIMAL_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Species",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SPECIES",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Primary_Breed",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PRIMARY_BREED",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Secondary_Breed",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SECONDARY_BREED",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZIP_Code",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ZIP_CODE",
+									"type": "String"
+								}
+							}
+						]
+					}
 				},
+				"inputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					}
+				],
 				"outputs": [
 					{
-						"referenceName": "SnowflakeTable1",
+						"referenceName": "SnowflakeTable14",
 						"type": "DatasetReference"
 					}
 				]
