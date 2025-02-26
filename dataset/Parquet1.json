@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "NYPD_Parquet_File.parquet",
-				"fileSystem": "silver"
+				"fileName": "Seattle_Pet_Licenses_new.tsv",
+				"fileSystem": "bronze"
 			},
 			"compressionCodec": "snappy"
 		},
