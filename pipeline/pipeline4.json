@@ -34,8 +34,6 @@
 			{
 				"name": "LoadBreedDim",
 				"type": "ExecuteDataFlow",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "CleanPetLicData",
@@ -70,6 +68,8 @@
 			{
 				"name": "LoadLocationDim",
 				"type": "ExecuteDataFlow",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "LoadBreedDim",

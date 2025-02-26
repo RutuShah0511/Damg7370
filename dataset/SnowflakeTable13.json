@@ -7,7 +7,52 @@
 		},
 		"annotations": [],
 		"type": "SnowflakeV2Table",
-		"schema": [],
+		"schema": [
+			{
+				"name": "LOCATION_SK",
+				"type": "NUMBER",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "ZIP_CODE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "CITY",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "STATE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "STATE_ABBR",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "STATE_FIPS",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "SGK_ID",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "COUNTY",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "DI_JOB_ID",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "DI_LOAD_DT",
+				"type": "TIMESTAMP_NTZ"
+			}
+		],
 		"typeProperties": {
 			"schema": "SEATTLE_PET_LICENSE_SCHEMA",
 			"table": "LOCATION_DIM"

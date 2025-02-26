@@ -13,14 +13,14 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "SnowflakeTable5",
+						"referenceName": "SnowflakeTable8",
 						"type": "DatasetReference"
 					},
 					"name": "BreedDim"
 				},
 				{
 					"dataset": {
-						"referenceName": "SnowflakeTable5",
+						"referenceName": "SnowflakeTable8",
 						"type": "DatasetReference"
 					},
 					"name": "SourcdBreedDim"
@@ -88,7 +88,7 @@
 				"          SECONDARY_BREED_NAME as string,",
 				"          SPECIES_NAME as string,",
 				"          DI_JOB_ID as string,",
-				"          DI_LOAD_DT as date",
+				"          DI_LOAD_DT as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
