@@ -13,14 +13,14 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "SnowflakeTable8",
+						"referenceName": "SnowflakeTable15",
 						"type": "DatasetReference"
 					},
 					"name": "BreedDim"
 				},
 				{
 					"dataset": {
-						"referenceName": "SnowflakeTable8",
+						"referenceName": "SnowflakeTable15",
 						"type": "DatasetReference"
 					},
 					"name": "SourcdBreedDim"
@@ -82,15 +82,7 @@
 				"     validateSchema: false,",
 				"     query: 'SELECT NVL(MAX(BREED_SK),0) as MaxBreedSK FROM SEATTLE_PET_LICENSE_SCHEMA.BREED_DIM',",
 				"     format: 'query') ~> BreedDim",
-				"source(output(",
-				"          BREED_SK as decimal(10,0),",
-				"          PRIMARY_BREED_NAME as string,",
-				"          SECONDARY_BREED_NAME as string,",
-				"          SPECIES_NAME as string,",
-				"          DI_JOB_ID as string,",
-				"          DI_LOAD_DT as timestamp",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'table') ~> SourcdBreedDim",
 				"SeattlePetDB, BreedDim join(1==1,",
