@@ -24,7 +24,12 @@
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          {nconst     primaryName     birthYear     deathYear     primaryProfession     knownForTitles} as string",
+				"          nconst as string,",
+				"          primaryName as string,",
+				"          birthYear as string,",
+				"          deathYear as string,",
+				"          primaryProfession as string,",
+				"          knownForTitles as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
