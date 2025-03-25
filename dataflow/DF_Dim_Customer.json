@@ -1,12 +1,12 @@
 {
-	"name": "Late_dim_customer",
+	"name": "DF_Dim_Customer",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DelimitedText7",
+						"referenceName": "DelimitedText5",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "SnowflakeTable19",
+						"referenceName": "SnowflakeTable17",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -23,31 +23,27 @@
 			],
 			"transformations": [
 				{
-					"name": "surrogateKey1"
-				},
-				{
 					"name": "derivedColumn1"
 				},
 				{
-					"name": "alterRow1"
+					"name": "surrogateKey1"
 				}
 			],
 			"scriptLines": [
 				"source(output(",
-				"          customerid as short,",
+				"          customerid as string,",
 				"          CustomerName as string,",
 				"          billTo as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
+				"surrogateKey1 derive(DI_CreatedDt = currentTimestamp(),",
+				"          pid = 'part1') ~> derivedColumn1",
 				"source1 keyGenerate(output(customer_sk as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey1",
-				"surrogateKey1 derive(DI_CreatedDt = currentDate(),",
-				"          pid = \"part1\") ~> derivedColumn1",
-				"derivedColumn1 alterRow(upsertIf(!isNull(customerid))) ~> alterRow1",
-				"alterRow1 sink(allowSchemaDrift: true,",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          CUSTOMER_SK as decimal(38,0),",
@@ -58,19 +54,18 @@
 				"     ),",
 				"     deletable:false,",
 				"     insertable:true,",
-				"     updateable:true,",
-				"     upsertable:true,",
-				"     keys:['CUSTOMER_ID'],",
+				"     updateable:false,",
+				"     upsertable:false,",
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     stageInsert: true,",
 				"     mapColumn(",
-				"          CUSTOMER_SK = customer_sk,",
+				"          DI_CREATEDDT = DI_CreatedDt,",
+				"          PID = pid,",
 				"          CUSTOMER_ID = customerid,",
 				"          CUSTOMER_NAME = CustomerName,",
-				"          DI_CREATEDDT = DI_CreatedDt,",
-				"          PID = pid",
+				"          CUSTOMER_SK = customer_sk",
 				"     )) ~> sink1"
 			]
 		}
