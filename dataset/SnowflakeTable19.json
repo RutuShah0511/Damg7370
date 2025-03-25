@@ -1,0 +1,16 @@
+{
+	"name": "SnowflakeTable19",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake11",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": [],
+		"typeProperties": {
+			"schema": "CUSTOMER_SCHEMA",
+			"table": "DIM_CUSTOMER"
+		}
+	}
+}
